@@ -1223,7 +1223,7 @@ function App() {
                { keys: ['tentang ibnu', 'tentang kamu', 'tentang dirimu', 'siapa ibnu', 'siapa dexton', 'siapa itu ibnu', 'profil ibnu', 'profil kamu', 'about ibnu', 'about dexton', 'who is ibnu', 'who is dexton'], answer: 'chatbotAns1' },
                { keys: ['skill ibnu', 'skill kamu', 'keahlian ibnu', 'keahlian kamu', 'kemampuan ibnu', 'ibnu bisa apa', 'kamu bisa apa', 'expertise of ibnu'], answer: 'chatbotAns2' },
                { keys: ['proyek ibnu', 'project ibnu', 'karya ibnu', 'portofolio ibnu', 'portfolio ibnu', 'proyek kamu', 'project kamu', 'karya kamu', 'work of ibnu'], answer: 'chatbotAns3' },
-               { keys: ['kontak', 'contact', 'hubungi', 'email', 'whatsapp', ' wa ', 'instagram', ' ig '], answer: 'chatbotAns4' },
+                { keys: ['kontak', 'contact', 'hubungi', 'email', 'whatsapp', ' wa ', 'instagram', ' ig ', 'tiktok', ' tt '], answer: 'chatbotAns4' },
                { keys: ['makanan favorit ibnu', 'hobi ibnu', 'umur ibnu', 'makanan favorit kamu', 'hobi kamu', 'umur kamu', 'age of ibnu', 'lahir ibnu', 'ulang tahun ibnu'], answer: 'chatbotAnsUnknownPersonal' },
            ];
 
