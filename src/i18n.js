@@ -36,13 +36,13 @@ export const translations = {
     // Skills
     skillsHeader: 'Keahlian',
     skillUiuxTitle: 'UI/UX Design',
-    skillUiuxDesc: 'Mendesain antarmuka yang intuitif dan pengalaman pengguna yang engaging.',
+    skillUiuxDesc: 'Bikin desain interface yang ga cuma estetik tapi juga nyaman dan gampang dipake sama user.',
     skillGraphicTitle: 'Graphic Design',
-    skillGraphicDesc: 'Desain grafis untuk branding, marketing, dan kebutuhan visual lainnya.',
+    skillGraphicDesc: 'Bikin identitas visual dan aset promosi mulai dari logo, feed sosmed, sampai layout siap cetak.',
     skillMotionTitle: 'Motion Design',
-    skillMotionDesc: 'Animasi dan motion graphics untuk konten digital yang dinamis.',
+    skillMotionDesc: 'Ngidupin ilustrasi dan grafis statis lewat animasi biar konten digitalnya kerasa lebih hidup.',
     skillFrontendTitle: 'Frontend Dev',
-    skillFrontendDesc: 'Membangun website responsif dengan HTML, CSS, dan JavaScript.',
+    skillFrontendDesc: 'Ngelas kode HTML, CSS, dan JS buat nerjemahin desain jadi website yang responsif dan ringan.',
 
     // Tech Stack
     techstackHeader: 'Tumpukan Teknologi',
@@ -123,6 +123,7 @@ export const translations = {
     chatbotAns3: 'Beberapa proyeknya: Brand Identity Garuda Private Server, Custom Vector Logo, Packaging Keripik Tempe, sampai Social Media Kit buat brand sepatu lokal. Scroll ke section "Arsip Proyek" buat lihat semua!',
     chatbotAns4: 'Gampang! Scroll ke section "Hubungi Saya" di bawah, isi form kontaknya, atau langsung klik "Hubungi Saya" di section paling atas atau klik link ini',
     chatbotFallback: 'Hmm, aku belum ngerti pertanyaan itu Coba pencet salah satu tombol cepat di bawah, atau tanya soal profil, skill, proyek, sama kontak ya!',
+    
     chatbotMenuAria: 'Menu Chat',
     chatbotMenuNew: 'Mulai Chat Baru',
     chatbotMenuEnd: 'Akhiri Chat',
@@ -168,16 +169,16 @@ export const translations = {
     statClients: 'Happy Clients',
     statYears: 'Years in the Game',
 
-    // Skills
-    skillsHeader: 'Skills',
-    skillUiuxTitle: 'UI/UX Design',
-    skillUiuxDesc: 'Designing interfaces that just make sense and UX that actually keeps people around.',
-    skillGraphicTitle: 'Graphic Design',
-    skillGraphicDesc: 'Graphic design for branding, marketing, and pretty much any visual need.',
-    skillMotionTitle: 'Motion Design',
-    skillMotionDesc: 'Animation and motion graphics that give digital content some life.',
-    skillFrontendTitle: 'Frontend Dev',
-    skillFrontendDesc: 'Building responsive sites with HTML, CSS, and JavaScript.',
+     // Skills
+     skillsHeader: 'Skills',
+     skillUiuxTitle: 'UI/UX Design',
+     skillUiuxDesc: 'Crafting interfaces that look fire and actually feel right to use.',
+     skillGraphicTitle: 'Graphic Design',
+     skillGraphicDesc: 'Building visual identities, promo assets, logos, social feeds, everything print-ready.',
+     skillMotionTitle: 'Motion Design',
+     skillMotionDesc: 'Breathing life into static graphics and illustrations through smooth animations.',
+     skillFrontendTitle: 'Frontend Dev',
+     skillFrontendDesc: 'Wiring up HTML, CSS, and JS to turn designs into fast, responsive websites.',
 
     // Tech Stack
     techstackHeader: 'Tech Stack',

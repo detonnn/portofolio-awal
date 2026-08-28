@@ -3,5 +3,6 @@
     "api/chat.js": {
       "maxDuration": 30
     }
-  }
+  },
+  "devCommand": "npm run dev"
 }
