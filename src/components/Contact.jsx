@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 function Contact() {
   return (
@@ -51,8 +51,7 @@ function Contact() {
             <button type="submit" className="btn btn-primary btn-animate"><span data-i18n="formSendBtn">Kirim Pesan</span> <i className="fas fa-paper-plane"></i></button>
           </form>
         </div>
-
-        {/* Comments Section */}
+        
         <div className="comments-section reveal-init">
           <h3 data-i18n="commentsHeader">Apa Kata Pengunjung</h3>
           <div className="comments-list" id="commentsList">

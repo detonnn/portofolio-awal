@@ -45,7 +45,7 @@ export const translations = {
     skillFrontendDesc: 'Ngelas kode HTML, CSS, dan JS buat nerjemahin desain jadi website yang responsif dan ringan.',
 
     // Tech Stack
-    techstackHeader: 'Tumpukan Teknologi',
+    techstackHeader: 'Tumpukan teknologi',
     techReactDesc: 'Jadi tulang punggung hampir semua UI yang saya bangun—component-based, gampang di-reuse, dan enak dipadukan dengan state management ringan.',
     techNextDesc: 'Andalan untuk proyek yang butuh performa lebih—SSR dan routing bawaannya bikin loading halaman terasa instan tanpa konfigurasi ribet.',
     techJsDesc: 'Bahasa yang paling sering saya sentuh tiap hari—dari logika interaktif kecil sampai integrasi API, selalu jadi lem penghubung antar teknologi lain.',
@@ -123,7 +123,7 @@ export const translations = {
     chatbotAns3: 'Beberapa proyeknya: Brand Identity Garuda Private Server, Custom Vector Logo, Packaging Keripik Tempe, sampai Social Media Kit buat brand sepatu lokal. Scroll ke section "Arsip Proyek" buat lihat semua!',
     chatbotAns4: 'Gampang! Scroll ke section "Hubungi Saya" di bawah, isi form kontaknya, atau langsung klik "Hubungi Saya" di section paling atas atau klik link ini',
     chatbotFallback: 'Hmm, aku belum ngerti pertanyaan itu Coba pencet salah satu tombol cepat di bawah, atau tanya soal profil, skill, proyek, sama kontak ya!',
-    
+     
     chatbotMenuAria: 'Menu Chat',
     chatbotMenuNew: 'Mulai Chat Baru',
     chatbotMenuEnd: 'Akhiri Chat',
@@ -279,5 +279,5 @@ export const translations = {
 export const CF_MODELS = [
   { id: 'money', name: 'Money', src: '/money-cash.gif' },
   { id: 'jellyfish', name: 'Jellyfish', src: '/jellyfish.gif' },
-  { id: 'kriby', name: 'Kirby', src: '/kirby.gif' },
+  { id: 'kriby', name: 'Kriby', src: '/kirby.gif' },
 ];
