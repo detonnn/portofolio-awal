@@ -599,7 +599,7 @@ body::before {
     /* transform-style + will-change transform doang: GPU-composited,
        gak nyentuh layout/paint jadi ringan di device low-end */
     transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
     box-shadow: var(--shadow);
     position: relative;
     overflow: visible;
@@ -656,7 +656,7 @@ body::before {
 
 .tech-card.tech-card:hover,
 .tech-grid:hover .tech-card.tech-card {
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
     transition-delay: 0s;
 }
 
@@ -671,7 +671,7 @@ body::before {
     border-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 30px 55px rgba(0, 0, 0, 0.45), 0 10px 24px rgba(255, 255, 255, 0.15);
     background: rgba(255, 255, 255, 0.06);
-    z-index: 5;
+    z-index: 100;
 }
 
 
