@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 function About() {
   return (
@@ -10,7 +10,7 @@ function About() {
         </div>
         <div className="about-content">
           <div className="about-text">
-            <h3 data-i18n="aboutSubtitle">amateur nya tangerang</h3>
+            <h3 data-i18n="aboutSubtitle">PROFIL PROFESIONAL</h3>
             <p data-i18n="aboutP1">Saya Ibnu Dexton, lulusan SMKN 5 Kota Tangerang dengan jurusan Desain Komunikasi Visual. Dengan passion dalam menciptakan desain yang bermakna, saya telah bekerja dengan berbagai klien dari berbagai industries.</p>
             <p data-i18n="aboutP2">Pendekatan saya adalah menggabungkan estetika modern dengan fungsi yang jelas, memastikan setiap proyek tidak hanya terlihat indah tetapi juga efektif dalam menyampaikan pesan.</p>
             <div className="about-stats">

@@ -1,39 +1,11 @@
-import React from 'react';
+
 
 function Skills() {
   const skills = [
-    {
-      id: 1,
-      icon: 'fab fa-figma',
-      titleKey: 'skillUiuxTitle',
-      descKey: 'skillUiuxDesc',
-      level: 90,
-      color: '#7dd3fc'
-    },
-    {
-      id: 2,
-      icon: 'fas fa-pen-nib',
-      titleKey: 'skillGraphicTitle',
-      descKey: 'skillGraphicDesc',
-      level: 95,
-      color: '#c4b5fd'
-    },
-    {
-      id: 3,
-      icon: 'fas fa-mobile-alt',
-      titleKey: 'skillMotionTitle',
-      descKey: 'skillMotionDesc',
-      level: 80,
-      color: '#fde047'
-    },
-    {
-      id: 4,
-      icon: 'fas fa-code',
-      titleKey: 'skillFrontendTitle',
-      descKey: 'skillFrontendDesc',
-      level: 75,
-      color: '#67e8f9'
-    }
+    { id: 1, icon: 'fab fa-figma', title: 'UI/UX Design', titleKey: 'skillUiuxTitle', descKey: 'skillUiuxDesc', level: 90, color: '#7dd3fc' },
+    { id: 2, icon: 'fas fa-pen-nib', title: 'Graphic Design', titleKey: 'skillGraphicTitle', descKey: 'skillGraphicDesc', level: 95, color: '#c4b5fd' },
+    { id: 3, icon: 'fas fa-mobile-alt', title: 'Motion Design', titleKey: 'skillMotionTitle', descKey: 'skillMotionDesc', level: 80, color: '#fde047' },
+    { id: 4, icon: 'fas fa-code', title: 'Frontend Dev', titleKey: 'skillFrontendTitle', descKey: 'skillFrontendDesc', level: 75, color: '#67e8f9' },
   ];
 
   return (
@@ -53,7 +25,7 @@ function Skills() {
               <div className="skill-icon">
                 <i className={skill.icon}></i>
               </div>
-              <h3 data-i18n={skill.titleKey}></h3>
+              <h3 data-i18n={skill.titleKey}>{skill.title}</h3>
               <p data-i18n={skill.descKey}></p>
               <div className="skill-bar">
                 <div className="skill-progress"></div>

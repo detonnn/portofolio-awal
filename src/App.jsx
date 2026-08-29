@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
 import './style/global.css';
 import './style/navbar.css';
@@ -29,6 +29,7 @@ function App() {
       const enterBtn = document.getElementById('enterBtn');
 
       let siteEntered = false;
+      let fontShuffleInterval;
 
       const swiperSound = new Audio();
       swiperSound.src = '/swiper.MP3';
@@ -43,16 +44,16 @@ function App() {
       let fontSoundActive = true; // jadi false begitu user hover judulnya
 
       async function preloadFontLoopSound() {
-          try {
-              fontLoopCtx = new (window.AudioContext || window.webkitAudioContext)();
-              const response = await fetch('/camera%20porto.MP3');
-              const arrayBuffer = await response.arrayBuffer();
-              fontLoopBuffer = await fontLoopCtx.decodeAudioData(arrayBuffer);
-              isFontLoopReady = true;
-              console.log('[AUDIO FONT] Buffer loop siap!');
-          } catch (err) {
-              console.warn('[AUDIO FONT] Gagal preload:', err);
-          }
+           try {
+               fontLoopCtx = new (window.AudioContext || window.webkitAudioContext)();
+               const response = await fetch('/camera%20porto.MP3');
+               const arrayBuffer = await response.arrayBuffer();
+               fontLoopBuffer = await fontLoopCtx.decodeAudioData(arrayBuffer);
+               isFontLoopReady = true;
+               console.log('[AUDIO FONT] Buffer loop siap!');
+           } catch {
+               console.warn('[AUDIO FONT] Gagal preload');
+           }
       }
       preloadFontLoopSound();
 
@@ -72,7 +73,7 @@ function App() {
 
       function stopFontLoopSound() {
           if (fontLoopSource) {
-              try { fontLoopSource.stop(); } catch (err) {}
+              try { fontLoopSource.stop(); } catch { /* already stopped */ }
               fontLoopSource.disconnect();
               fontLoopSource = null;
           }
@@ -199,7 +200,7 @@ function App() {
               "'Charmonman', cursive",   // vibe Thailand
               "'Yuji Syuku', serif",     // vibe Jepang
           ];
-          const fontShuffleInterval = setInterval(() => {
+          fontShuffleInterval = setInterval(() => {
               loaderTitle.style.fontFamily = LOADER_FONTS[(Math.random() * LOADER_FONTS.length) | 0];
           }, 180);
 
@@ -287,14 +288,16 @@ function App() {
                           shard.element.style.opacity = '0.85';
                       }
                   });
-                  requestAnimationFrame(animateShatter);
+                  if (!loader.classList.contains('hide')) requestAnimationFrame(animateShatter);
               }
               requestAnimationFrame(animateShatter);
           }, { once: true });
       }
 
       function hideLoader() {
-          if (!loader) return;
+          if (!loader || loader.classList.contains('hide')) return;
+          siteEntered = true;
+          clearInterval(fontShuffleInterval);
           loader.classList.add('hide');
           console.log('[LOADER] Tersembunyi!');
 
@@ -314,29 +317,24 @@ function App() {
           }
       }
       
+      function enterSite() {
+          if (!loader || loader.classList.contains('hide')) return;
+          new Audio('/enter.MP3').play().catch(() => {});
+          hideLoader();
+      }
+
       if (enterBtn) {
           enterBtn.addEventListener('click', function(e) {
               e.preventDefault();
               e.stopPropagation();
-
-              // Tandai user sudah masuk ke situs, baru dari sini sound lain boleh keluar
-              siteEntered = true;
-
-              // Mainkan sound enter.MP3 begitu tombol Enter ditekan
-              new Audio('/enter.MP3').play().catch(err => console.log('[AUDIO] Enter sound error:', err));
-
-              // 3. Panggil fungsi bawaan template kamu untuk nutup loader
-              if (typeof hideLoader === 'function') {
-                  hideLoader();
-              }
+              enterSite();
           });
 
-          // Fallback: Tekan tombol Enter di keyboard
           document.addEventListener('keydown', function(e) {
-              if (e.key === 'Enter' && loader && !loader.classList.contains('hide')) {
-                  e.preventDefault();
-                  hideLoader();
-              }
+              if (e.key !== 'Enter' || !loader || loader.classList.contains('hide')) return;
+              if (e.target.closest('input, textarea, [contenteditable]')) return;
+              e.preventDefault();
+              enterSite();
           });
 
           console.log('[LOADER] Event listener tombol enter terpasang.');
@@ -406,7 +404,7 @@ function App() {
       // ================================================================
       const cursorFollower = document.querySelector('.cursor-follower');
       let cursorX = 0, cursorY = 0, followerX = 0, followerY = 0;
-      let animFrameId = null;
+
 
       function updateCursor(e) {
           cursorX = e.clientX;
@@ -416,21 +414,21 @@ function App() {
           }
       }
 
-      function animateFollower() {
-          const lerp = 0.15;
-          followerX += (cursorX - followerX) * lerp;
-          followerY += (cursorY - followerY) * lerp;
+       function animateFollower() {
+           const lerp = 0.15;
+           followerX += (cursorX - followerX) * lerp;
+           followerY += (cursorY - followerY) * lerp;
 
-          if (cursorFollower) {
-              cursorFollower.style.transform =
-                  `translate(${followerX - cursorFollower.offsetWidth/2}px, ${followerY - cursorFollower.offsetHeight/2}px)`;
-          }
-          animFrameId = requestAnimationFrame(animateFollower);
-      }
+           if (cursorFollower) {
+               cursorFollower.style.transform =
+                   `translate(${followerX - cursorFollower.offsetWidth/2}px, ${followerY - cursorFollower.offsetHeight/2}px)`;
+           }
+           requestAnimationFrame(animateFollower);
+       }
 
-      if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-          window.addEventListener('mousemove', updateCursor);
-          animFrameId = requestAnimationFrame(animateFollower);
+       if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+           window.addEventListener('mousemove', updateCursor);
+           requestAnimationFrame(animateFollower);
           document.addEventListener('mouseenter', () => {
               if (cursorFollower) cursorFollower.style.opacity = '1';
           });
@@ -445,11 +443,10 @@ function App() {
       // 3B. CURSOR FOLLOWER SETTINGS (toggle on/off & ganti model gif)
       // ================================================================
       (function() {
-          const cfImg = document.getElementById('cursorFollowerImg');
-          const cfSettings = document.getElementById('cfSettings');
-          const cfBtn = document.getElementById('cfSettingsBtn');
-          const cfMenu = document.getElementById('cfSettingsMenu');
-          const cfToggleBtn = document.getElementById('cfToggleBtn');
+           const cfImg = document.getElementById('cursorFollowerImg');
+           const cfSettings = document.getElementById('cfSettings');
+           const cfBtn = document.getElementById('cfSettingsBtn');
+           const cfToggleBtn = document.getElementById('cfToggleBtn');
           const cfToggleLabel = document.getElementById('cfToggleLabel');
           const cfModelList = document.getElementById('cfModelList');
 
@@ -595,57 +592,18 @@ function App() {
       }
 
       // ================================================================
-      // 5. SKILL BARS
-      // ================================================================
-      const skillBars = document.querySelectorAll('.skill-progress');
-      let skillAnimated = false;
-
-      function animateSkillBars() {
-          skillBars.forEach(bar => {
-              const width = bar.style.width;
-              bar.style.width = '0%';
-              setTimeout(() => { bar.style.width = width; }, 300);
-          });
-      }
-
-      setTimeout(animateSkillBars, 2500);
-
-      // Sebelumnya ini scroll listener yang manggil getBoundingClientRect() tiap event
-      // scroll → forced layout tiap frame (layout thrashing), berat banget pas dipadu Lenis.
-      // Diganti IntersectionObserver: browser yang ngasih tau kapan section masuk viewport,
-      // gak perlu polling & baca layout manual sama sekali.
-      const skillsSectionEl = document.querySelector('.skills');
-      if (skillsSectionEl) {
-          const skillTriggerObserver = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                  if (entry.isIntersecting && !skillAnimated) {
-                      animateSkillBars();
-                      skillAnimated = true;
-                      skillTriggerObserver.disconnect();
-                  }
-              });
-          }, { threshold: 0, rootMargin: '0px 0px -100px 0px' });
-          skillTriggerObserver.observe(skillsSectionEl);
-      }
-
-      // ================================================================
       // 6. CONTACT FORM
       // ================================================================
       const contactForm = document.getElementById('contactForm');
       if (contactForm) {
           contactForm.addEventListener('submit', function(e) {
               e.preventDefault();
-              const btn = this.querySelector('button');
-              const originalText = btn.textContent;
-              btn.textContent = 'Terkirim!';
-              btn.style.background = '#4CAF50';
-              btn.style.boxShadow = 'none';
-              setTimeout(() => {
-                  btn.textContent = originalText;
-                  btn.style.background = '';
-                  btn.style.boxShadow = '';
-                  this.reset();
-              }, 3000);
+              const name = document.getElementById('contactName')?.value.trim() || '';
+              const email = document.getElementById('contactEmail')?.value.trim() || '';
+              const subject = document.getElementById('contactSubject')?.value.trim() || 'Pesan dari portofolio';
+              const message = document.getElementById('contactMessage')?.value.trim() || '';
+              const body = `Dari: ${name} (${email})\n\n${message}`;
+              window.location.href = `mailto:ibnudexton@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           });
       }
 
@@ -893,12 +851,12 @@ function App() {
       }
 
 
-      const commentForm = document.getElementById('commentForm');
-      const commentsList = document.getElementById('commentsList');
+       const commentForm = document.getElementById('commentForm');
+       const commentsList = document.getElementById('commentsList');
 
-      if (commentForm && commentsList) {
-          commentForm.addEventListener('submit', function(e) {
-              e.preventDefault();
+       if (commentForm && commentsList) {
+           commentForm.addEventListener('submit', function(e) {
+               e.preventDefault();
               const nameInput = document.getElementById('commentName');
               const textInput = document.getElementById('commentText');
               const name = nameInput.value.trim();
@@ -910,11 +868,13 @@ function App() {
                   commentCard.innerHTML = `
                       <div class="comment-avatar"><i class="fas fa-user-astronaut"></i></div>
                       <div class="comment-body">
-                          <h4>${name}</h4>
-                          <p>${text}</p>
+                          <h4></h4>
+                          <p></p>
                           <span class="comment-time">Baru saja</span>
                       </div>
                   `;
+                  commentCard.querySelector('h4').textContent = name;
+                  commentCard.querySelector('p').textContent = text;
                   commentsList.insertBefore(commentCard, commentsList.firstChild);
                   this.reset();
 
@@ -1181,7 +1141,7 @@ function App() {
           // Riwayat chat sederhana, disimpan di localStorage
           function loadHistory() {
               try { return JSON.parse(localStorage.getItem('chatbot_history') || '[]'); }
-              catch (e) { return []; }
+              catch { return []; }
           }
           function saveHistoryEntry(text) {
               const hist = loadHistory();
@@ -1326,7 +1286,12 @@ function App() {
                   }
                   const wrap = document.createElement('div');
                   wrap.className = 'chatbot-msg bot chatbot-history-list';
-                  wrap.innerHTML = hist.map(h => `<div class="chatbot-history-item">${h.text}</div>`).join('');
+                  hist.forEach(h => {
+                      const item = document.createElement('div');
+                      item.className = 'chatbot-history-item';
+                      item.textContent = h.text;
+                      wrap.appendChild(item);
+                  });
                   body.appendChild(wrap);
                   body.scrollTop = body.scrollHeight;
               });

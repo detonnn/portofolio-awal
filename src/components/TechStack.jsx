@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 function TechStack() {
   return (
@@ -12,7 +12,7 @@ function TechStack() {
           <div className="tech-card">
             <div className="tech-card-top">
               <span className="tech-category tag-frontend">Frontend</span>
-              <span className="tech-version">v18.2</span>
+              <span className="tech-version">v19</span>
             </div>
             <div className="tech-icon"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" loading="lazy" /></div>
             <h3>React</h3>

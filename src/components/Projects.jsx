@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 function Projects() {
   return (
@@ -46,7 +46,7 @@ function Projects() {
             <div className="project-card">
               <div className="project-img" style={{ backgroundImage: "url('atticsjpg.jpg')" }}></div>
               <div className="project-info">
-                <h3 data-i18n="proj4Title">create own brand</h3>
+                <h3 data-i18n="proj4Title">pemilik merek</h3>
                 <p data-i18n="proj4Desc">Desain layout katalog dan majalah visual berskala cetak untuk mempromosikan brand fashion lokal asal Tangerang.</p>
                 <span className="project-tag tag-amber" data-i18n="proj4Tag">Layout & Cetak</span>
                 <span className="view-project"><span data-i18n="viewProject">Lihat Proyek</span> <i className="fas fa-arrow-right"></i></span>

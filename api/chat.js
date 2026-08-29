@@ -165,8 +165,7 @@ export default async function handler(req, res) {
     let data;
     try {
       data = JSON.parse(rawText);
-    } catch (parseErr) {
-      // Kalau masih ke-parse gagal, kemungkinan besar 9Router tetep ngirim format streaming
+    } catch {
       console.error('Gagal parse response 9Router (kemungkinan format streaming):', rawText.slice(0, 300));
       return res.status(502).json({ error: 'Format balasan AI tidak dikenali' });
     }

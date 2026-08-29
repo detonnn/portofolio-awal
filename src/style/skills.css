@@ -98,12 +98,13 @@
     background: linear-gradient(90deg, var(--color, #fff), rgba(255, 255, 255, 0.6));
     border-radius: 10px;
     box-shadow: 0 0 10px var(--color, #fff);
-    width: 0% !important;
-    transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    width: 0%;
+    transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+.skill-card.in-view .skill-progress,
 .skill-card:hover .skill-progress {
-    width: var(--level, 100%) !important;
+    width: var(--level, 100%);
 }
 
 /* Reveal animation */

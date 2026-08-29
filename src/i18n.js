@@ -279,5 +279,5 @@ export const translations = {
 export const CF_MODELS = [
   { id: 'money', name: 'Money', src: '/money-cash.gif' },
   { id: 'jellyfish', name: 'Jellyfish', src: '/jellyfish.gif' },
-  { id: 'kriby', name: 'Kriby', src: '/kirby.gif' },
+  { id: 'kriby', name: 'Kirby', src: '/kirby.gif' },
 ];
